@@ -1,19 +1,19 @@
 body {
 	font-family: sans-serif;
-  }
-  
-  input {
+}
+
+input {
 	border: 1px solid #999;
 	padding: 0.5rem;
 	width: 300px;
-  }
-  
-  .no-suggestions {
+}
+
+.no-suggestions {
 	color: #999;
 	padding: 0.5rem;
-  }
-  
-  .suggestions {
+}
+
+.suggestions {
 	border: 1px solid #999;
 	border-top-width: 0;
 	list-style: none;
@@ -22,24 +22,35 @@ body {
 	overflow-y: auto;
 	padding-left: 0;
 	width: 300px;/*calc(300px + 1rem);*/
-  }
-  
-  .suggestions li {
-	padding: 0.5rem;
-  }
-  
-  .suggestion-active,
-  .suggestions li:hover {
-	background-color: #008f68;
-	color: #fae042;
-	cursor: pointer;
-	font-weight: 700;
-  }
-  
-  .suggestions li:not(:last-of-type) {
-	border-bottom: 1px solid #999;
-  }
+}
 
-  .margin {
-	  margin: 10px;
-  }
+.suggestions li {
+	padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+.suggestions li:not(:last-of-type) {
+border-bottom: 1px solid #999;
+}
+
+.margin {
+	margin: 10px;
+}
+
+.goBtn {
+	border: solid;
+	border-width: 1px;
+	width: 50px;
+	height: 100%;
+}
+
+.centerItem {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

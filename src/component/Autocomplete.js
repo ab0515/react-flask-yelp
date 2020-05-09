@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import '../style/Autocomplete.css';
+import PropTypes from 'prop-types';
 import Results from './Results';
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
@@ -75,6 +75,14 @@ class Autocomplete extends Component {
 			}
 			this.setState({activeSuggestion: activeSuggestion-1})
 		}
+		// User pressed the down arrow, increment the index
+		else if (e.keyCode === 40) {
+			if (activeSuggestion - 1 === filteredSuggestions.length) {
+			  return;
+			}
+	  
+			this.setState({ activeSuggestion: activeSuggestion + 1 });
+		}	
 	};
 
 	render() {
@@ -127,7 +135,7 @@ class Autocomplete extends Component {
 				<div className="margin">
 					<Container>
 						<Row>
-							<Col>
+							<Col md={5} className="centerItem">
 								<Row>
 									<input 
 									type="text"
@@ -136,17 +144,17 @@ class Autocomplete extends Component {
 									value={userInput}
 									placeholder="What's you are craving for?"
 									/>
-								{suggestionsListComponent}	
+								
 								</Row>
 							</Col>
-							<Col>
+							<Col md={5} className="centerItem">
 								<input type="text"
 								onChange={handleChange}
 								placeholder="Where?"
 								value={location}
 								/>
 							</Col>
-							<Col>
+							<Col md={2}>
 								{/* <Link to={`/results/${userInput},${location}`}>Go</Link> */}
 								<Link to={{
 									pathname:'/results',
@@ -154,10 +162,14 @@ class Autocomplete extends Component {
 										userInput,
 										location
 									}
-								}}>Go</Link>
+								}}><span>Go</span></Link>
 							</Col>
 						</Row>
-						
+						<Row>
+							<Col md={5} className="centerItem">
+							{suggestionsListComponent}	
+							</Col>
+						</Row>
 					</Container>
 				</div>
 			</Fragment>

@@ -10,6 +10,8 @@ import config
 app = Flask(__name__)
 CORS(app)
 
+API_KEY = config.api_key
+
 @app.route('/time')
 def get_current_time():
 	return {'time': time.time()}
@@ -19,14 +21,13 @@ def get_yelp_data():
 	if request.args:
 		cat = request.args['cat']
 		location = request.args['location']
-		api_key = config.api_key
 		# print(api_key,file=sys.stderr)
-		headers = {'Authorization':'Bearer %s' % api_key}
+		headers = {'Authorization':'Bearer %s' % API_KEY}
 
 		url='https://api.yelp.com/v3/businesses/search'
 
 		# In the dictionary, term can take values like food, cafes or businesses like McDonalds
-		params = {'term':cat,'location':location}
+		params = {'term':cat,'location':location, 'sort-by':'best_match'}
 
 		req = requests.get(url, params=params, headers=headers)
 
@@ -49,3 +50,19 @@ def get_categories():
 		res['categories'].append(data[i]['title'])
 	f.close()
 	return res
+
+@app.route('/api/getdetails')
+def get_restaurantDetails():
+	if request.args:
+		business_id = request.args['id']
+		headers = {'Authorization':'Bearer %s' % API_KEY}
+
+		url = 'https://api.yelp.com/v3/businesses/' + business_id
+		req = requests.get(url, headers=headers)
+
+		res = json.loads(req.text)
+		return res
+
+	else:
+		print('no request args')
+		return {}
