@@ -44,7 +44,12 @@ const SearchResults = (props) => {
 								<Card.Text><span style={{fontWeight:'bold'}}>{rest.name}</span> | {rest.price ? rest.price : 'N/A'} | {rest.rating} </Card.Text>
 								{/* <Card.Text> Price range: {rest.price ? rest.price : 'N/A'} </Card.Text> */}
 								<DisplayAddress rest={rest}></DisplayAddress>
-								<Link to={`/results/${rest.id}`}>Click here</Link>
+								<Link to={{
+									pathname: `/search/biz/${rest.name}`,
+									state: {
+										bizId: rest.id
+									}
+								}}>Click here</Link>
 							</Card.Body>
 							<Card.Footer>
 								<small className="text-muted">Call {rest.display_phone}</small>
@@ -54,9 +59,6 @@ const SearchResults = (props) => {
 					}
 				</CardColumns>
 			</div>
-			<Switch>
-				<Route path='/results/:businessId' component={RestDetails}></Route>
-			</Switch>
 		</div>
 	);
 }

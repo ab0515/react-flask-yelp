@@ -12,7 +12,8 @@ function App() {
 		<BrowserRouter>
 			<Switch>
 				<Route path="/" component={Home} exact></Route>
-				<Route path="/results" component={SearchResults} exact></Route>
+				<Route path="/search" component={SearchResults} exact></Route>
+				<Route path="/search/biz/:bizName" component={RestDetails}></Route>
 			</Switch>
 		</BrowserRouter>
 	</div>

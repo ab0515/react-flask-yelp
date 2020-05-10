@@ -157,7 +157,7 @@ class Autocomplete extends Component {
 							<Col md={2}>
 								{/* <Link to={`/results/${userInput},${location}`}>Go</Link> */}
 								<Link to={{
-									pathname:'/results',
+									pathname:'/search',
 									state:{
 										userInput,
 										location

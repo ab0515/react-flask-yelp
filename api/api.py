@@ -51,7 +51,7 @@ def get_categories():
 	f.close()
 	return res
 
-@app.route('/api/getdetails')
+@app.route('/api/getdetails', methods=['GET'])
 def get_restaurantDetails():
 	if request.args:
 		business_id = request.args['id']
